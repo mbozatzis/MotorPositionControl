@@ -12,7 +12,8 @@ Unfortunately, there is no detailed schematic with the exact board and sensors u
 
 A high level diagram of the system is shown below.
 
-[motschem.pdf](https://github.com/miltosmp/motor-position-control/files/8902103/motschem.pdf)
+<img width="292" alt="Screenshot 2022-06-14 204327" src="https://user-images.githubusercontent.com/61554467/173646627-3d279ef9-b1c3-474c-a6f9-b4f81f5bda02.png">
+
 
 For the purpose of this experiment, we also need the transfer functions of the system. The generic block diagram of the layout is shown in the schematic below. The exact transfer functions will be determined as first step of the experiment.
 
