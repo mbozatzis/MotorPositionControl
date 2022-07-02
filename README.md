@@ -53,3 +53,27 @@ So, finally we have:
 
 ### State equations determination
 
+From the block diagram of the system, we can extract some equations for the values of interest in the frequency domain. So we have:
+- $\Theta(s) = \frac{k_{0}k_{\mu}}{s}\Omega(s) => \mathcal{L}^{-1}[\Omega(s)] = \mathcal{L}^{-1}[\frac{s}{k_{0}k{\mu}}\Theta(s)] => \omega(t) = \frac{1}{k_{0}k{\mu}}\frac{d\theta(t)}{dt}$
+- $V(s) = -k_{T}\Omega(s) => v(t) = -k_{T}\omega(t) => v(t) = \frac{-k_T}{k_{0}k{\mu}}\frac{d\theta(t)}{dt} $
+- $\Omega(s) = -\frac{k_{m}}{T_{m}s+1}U(s)$ for our experiments we will have a step input (Heaviside) $u(t) = u, t>0 $. So  $U(s) = u/s $ and the initial equation can be transfered in the time domain as  $\omega(t) = -k_{m}(1-e^{-t/T_{m}})u => v(t) = k_Tk_{m}(1-e^{-t/T_{m}})u$.
+
+We will choose the state variables:  $x_1 = \theta $ and  $x_2 = v $. So:
+- $\dot{x_1} = \dot{\theta} => \dot{x_1} = \frac{-k_0k_{\mu}}{k_T}x_2$
+- $\dot{x_2} = \dot{v} => \dot{x_2} = -\frac{1}{T_m}x_2 + \frac{k_mk_T}{T_m}u$
+
+And the equations of state will be:
+$$ \dot{x} = Ax + Bu$$
+$$ y = Cx + Du$$
+
+$$ A = \begin{bmatrix}
+0 & -k_0k_{\mu}/k_T \\
+0 & -1/T_{m} 
+\end{bmatrix}, B = \begin{bmatrix}
+0  \\
+k_mk_T/T_m   
+\end{bmatrix}, C = \begin{bmatrix}
+1 & 0
+\end{bmatrix}, D = [0] $$
+
+
