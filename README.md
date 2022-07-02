@@ -66,6 +66,8 @@ And the equations of state will be:
 $$ \dot{x} = Ax + Bu$$
 $$ y = Cx + Du$$
 
+where
+
 $$ A = \begin{bmatrix}
 0 & -k_0k_{\mu}/k_T \\
 0 & -1/T_{m} 
@@ -76,4 +78,48 @@ k_mk_T/T_m
 1 & 0
 \end{bmatrix}, D = [0] $$
 
+Lastly, we need to check if our system can be controled. So, we calculate the controllability matrix 
 
+$$M = \begin{bmatrix}
+B & AB 
+\end{bmatrix} = \begin{bmatrix}
+0 & -k_0k_{\mu}k_m/T_m \\
+-k_mk_T/T_{m} & k_mk_T/T_{m}^2 
+\end{bmatrix} $$
+
+which has $det(M) = k_{\mu}k_0k_m^2k_T/T_m^2 \neq 0$, so the system is controllable.
+
+## Linear state feedback control
+### Theoretic Analysis
+The linear state feedback controller is desribed by the relation: $u = -k_1x_1 - k_2x_2 + k_rr$ where $r$ is the new input. Our goal is to calculate the gains of the controller ($k_1, k_2, k_r$).
+
+After the integration of the controller to the system, the new equations of state are shaped as:
+
+$$ \dot{x} = \begin{bmatrix}
+0 & -k_0k_{\mu}/k_T \\
+-k_1k_mk_T/T_{m} & \frac{-k_2k_mk_T-1}{T_{m}} 
+\end{bmatrix}x + \begin{bmatrix}
+0 \\
+k_Tk_rk_m/T_{m}  
+\end{bmatrix}r$$
+
+$$ y = \begin{bmatrix}
+1 & 0 
+\end{bmatrix}x$$
+
+From the new matrix $\tilde{A}$, we can find the new characteristic polynomial of the system: $P_c(s) = det(sI - \tilde{A}) = s^2 + \frac{1+k_2k_mk_T}{T_m}s - \frac{k_1k_0k_mk_{\mu}}{T_m}$. Our first requirement is for our system to be stable, and by using the Routh–Hurwitz stability criterion we find the constrains:
+$k_1<0, k_2> -\frac{1}{k_mk_T}$. Our second requirement is to make our system as fast as possible without oscillations. We can achieve this by having a damping ratio $\zeta = 1$. The characteristic polynomial can be written as $P_c(s) = s^2 + 2\zeta\omega_ns+\omega_n^2$. So, by corelating this form with the polynomial found above we find the relation: 
+
+$$k_1 = -\frac{k_2^2k_m^2k_T^2+2k_2k_mk_T+1}{4k_0k_mk_\mu}$$
+
+Our final requirement is to have minimum steady state error. At the steady state:
+
+$$\dot{x} = 0 => \tilde{A}x^* = -Bk_rr => x^* = -\tilde{A}^{-1}Bk_rr$$
+
+For zero steady state error:
+
+$$r = y_{ss} = Cx^* => r = -C\tilde{A}^{-1}Bk_rr = > k_r = -\frac{1}{C\tilde{A}^{-1}B}$$
+
+And, by doing the calculation we find $k_r = - k_1$. Since the $k_2$ gain will be determined by trial-and-error during the experimental procedure, we are ready to continue with the practical aplication.
+
+### Experimental Procedure
