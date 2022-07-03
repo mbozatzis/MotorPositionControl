@@ -110,7 +110,7 @@ $$ y = \begin{bmatrix}
 From the new matrix $\tilde{A}$, we can find the new characteristic polynomial of the system: $P_c(s) = det(sI - \tilde{A}) = s^2 + \frac{1+k_2k_mk_T}{T_m}s - \frac{k_1k_0k_mk_{\mu}}{T_m}$. Our first requirement is for our system to be stable, and by using the Routh–Hurwitz stability criterion we find the constrains:
 $k_1<0, k_2> -\frac{1}{k_mk_T}$. Our second requirement is to make our system as fast as possible without oscillations. We can achieve this by having a damping ratio $\zeta = 1$. The characteristic polynomial can be written as $P_c(s) = s^2 + 2\zeta\omega_ns+\omega_n^2$. So, by corelating this form with the polynomial found above we find the relation: 
 
-$$k_1 = -\frac{k_2^2k_m^2k_T^2+2k_2k_mk_T+1}{4k_0k_mk_\mu}$$
+$$k_1 = -\frac{k_2^2k_m^2k_T^2+2k_2k_mk_T+1}{4T_mk_0k_mk_\mu}$$
 
 Our final requirement is to have minimum steady state error. At the steady state:
 
