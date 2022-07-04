@@ -12,7 +12,7 @@ k0 = 0.24;
 kt = 0.00362;
 km = 231.04;
 
-k2 = 0.003;
+k2 = 1.3;
 k1 = -(1 + 2*k2*km*kt + kt^2*k2^2*km^2)/(4*Tm*ku*km*k0);
 kr = -k1;
  
@@ -30,7 +30,7 @@ while(i <= maxIter)
     x1 = 3 * Vref_arduino * position/1023;
     x2 = (2 * velocity * Vref_arduino / 1023 - V_7805);
 
-    u = -k1*x1-k2*x2+kr*setpos
+    u = -k1*x1-k2*x2+kr*setpos;
 
     if u>0
         analogWrite(a,9,0)
