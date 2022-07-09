@@ -50,9 +50,7 @@ end
 analogWrite(a,9,0);   
 analogWrite(a,6,0);
 
-plot(time, inputs)
-hold on
-plot(time, velocities)
+
 plot(time, positions)
-legend('u', 'x1', 'x2')
+legend('x1')
 
