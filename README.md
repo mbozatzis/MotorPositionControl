@@ -150,6 +150,7 @@ This time, the position doesn's converge to the $\theta_{ref}$ as the error is t
 In order to deal with this problem, we need ot change our controller. So, intead of a linear state feedback controler, we will use a dynamic state feedback controller, which has the abillity to depreciate disturbances.
 
 ## Dynamic state feedback control
+### Theoretic Analysis
 The dynamic state feedback controller is desribed by the relation:  $u = -k_1x_1 - k_2x_2 - k_iz $ where  $\dot{z} = y - r $ with  $r $ the new input. Our goal is to calculate the gains of the controller ($k_1, k_2, k_i$).
 
 After the integration of the controller to the system, the new equations of state are shaped as:
@@ -177,3 +178,19 @@ And the characteristic polynomial is:
 $$P_c(s) = s^3 + \frac{1+k_2k_Tk_m}{T_m}s^2 - \frac{k_0k_1k_{\mu}k_m}{T_m}s - \frac{k_0k_{\mu}k_ik_m}{T_m}$$
 
 We know that this controller will surely make our system follow the input as in the steady state $\dot{z} = 0 => y = r$. So, the only requirement is for our system to be stable. By aplying the Routh–Hurwitz stability criterion we find the constraints: $k_2>0, k_i < 0, k_1<\frac{T_mk_i}{1+k_Tk_mk_2}$. So, we can continue with the experiment.
+
+### Experimental Procedure
+
+During this experiment we repeated the procedure of the first experiment with the new controller. The results are:
+
+Without the magnetic break:
+
+<img width="352" alt="3without" src="https://user-images.githubusercontent.com/61554467/178113973-fcac2975-5352-4550-8332-0c5fc78502ba.png">
+
+With the magnetic break:
+
+<img width="374" alt="3with" src="https://user-images.githubusercontent.com/61554467/178113982-3bbd5579-ffe5-4c0b-a121-96d6e878f7d8.png">
+
+In this case, we have a bigger error while running the experiment without the magnetic break ($5.38$\%) and smaller with the magnetic break ($10.4$\%). These errors are again consequences of the imperfections of the system.
+
+
