@@ -51,6 +51,9 @@ So, finally we have:
 - $k_\mu = 1/36 $
 - $k_0 = 0.24 $
 
+Also, we need to calculate the exact operational voltages of our system in order to have them as reference.
+So, by meassuring, we find $V_{ref} = 5.3V$ and $V_{7805} = 5.46V$.
+
 ### State equations determination
 
 From the block diagram of the system, we can extract some equations for the values of interest in the frequency domain. So we have:
@@ -123,3 +126,26 @@ $$r = y_{ss} = Cx^* => r = -C\tilde{A}^{-1}Bk_rr = > k_r = -\frac{1}{C\tilde{A}^
 And, by doing the calculation we find $k_r = - k_1$. Since the $k_2$ gain will be determined by trial-and-error during the experimental procedure, we are ready to continue with the practical aplication.
 
 ### Experimental Procedure
+
+During the experimental procedure, the script *linear_state_feedback_controller.m* was developed and used. The value $k_2 = 1.3$ was selected after trial and error with the physical system. After this selection, the other parameters was calculated by the relations extracted during the theoretical analysis.
+
+#### First stage
+
+At the first stage of this experiment we will set the input of our system to  $r = \theta_{ref} = 5V $ and we will observe its behaviour. Our goal is for the system to converge to the input given. The initial position will be $\theta_{ref} = 5V$.
+
+After we run the code on the actual system we got the results shown bellow:
+
+<img width="385" alt="2_1_x1" src="https://user-images.githubusercontent.com/61554467/178112771-07a840a0-5f7b-4ab6-b249-55a6e6937574.png">
+
+As we see, the position ($x_1$) is indeed converging to our input. The error is about $0.155V$, so $3.1$\%. The reason for this error are the imperfections of the physical system.
+
+#### Second stage
+
+During the second stage, we will perform the exact same procedure, but this time the system will operate under some external disturbances. More spesifcally, we will apply a magnetic break to the motor while rotating. 
+
+<img width="379" alt="2_3_x1" src="https://user-images.githubusercontent.com/61554467/178112986-9bee83ac-0408-4c6f-979a-79f1ea353dae.png">
+
+This time, the position doesn's converge to the $\theta_{ref}$ as the error is to big - $0.7713V$, $15.426$\%. 
+
+In order to deal with this problem, we need ot change our controller. So, intead of a linear state feedback controler, we will use a dynamic state feedback controller, which has the abillity to depreciate disturbances.
+
