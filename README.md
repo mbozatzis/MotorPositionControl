@@ -149,3 +149,31 @@ This time, the position doesn's converge to the $\theta_{ref}$ as the error is t
 
 In order to deal with this problem, we need ot change our controller. So, intead of a linear state feedback controler, we will use a dynamic state feedback controller, which has the abillity to depreciate disturbances.
 
+## Dynamic state feedback control
+The dynamic state feedback controller is desribed by the relation:  $u = -k_1x_1 - k_2x_2 - k_iz $ where  $\dot{z} = y - r $ with  $r $ the new input. Our goal is to calculate the gains of the controller ($k_1, k_2, k_i$).
+
+After the integration of the controller to the system, the new equations of state are shaped as:
+
+$$ \begin{bmatrix}
+\dot{x_1}  \\
+\dot{x_2}  \\
+\dot{z}
+\end{bmatrix} = \begin{bmatrix}
+0 & -k_0k_{\mu}/k_T & 0 \\
+-k_1k_Tk_m/T_m & -(1+k_2k_Tk_m)/T_{m} & -k_ik_Tk_m/T_m \\
+1 & 0 & 0
+\end{bmatrix}\begin{bmatrix}
+x_1 \\
+x_2  \\
+z
+\end{bmatrix} + \begin{bmatrix}
+0 \\
+0  \\
+-1
+\end{bmatrix}r$$
+
+And the characteristic polynomial is:
+
+$$P_c(s) = s^3 + \frac{1+k_2k_Tk_m}{T_m}s^2 - \frac{k_0k_1k_{\mu}k_m}{T_m}s - \frac{k_0k_{\mu}k_ik_m}{T_m}$$
+
+We know that this controller will surely make our system follow the input as in the steady state $\dot{z} = 0 => y = r$. So, the only requirement is for our system to be stable. By aplying the Routh–Hurwitz stability criterion we find the constraints: $k_2>0, k_i < 0, k_1<\frac{T_mk_i}{1+k_Tk_mk_2}$. So, we can continue with the experiment.
