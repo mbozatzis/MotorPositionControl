@@ -193,4 +193,55 @@ With the magnetic break:
 
 In this case, we have a bigger error while running the experiment without the magnetic break ($5.38$\%) and smaller with the magnetic break ($10.4$\%). These errors are again consequences of the imperfections of the system.
 
+## State observation and linear controll
+
+For this experiment, we consider that we don't have access to the value of the velocity $x_2$. So we need to develop a state observator before trying to controll the system.
+
+### Theoretical Analysis
+
+First of all, we need to examine if our system is observable. We define the observation matrix:
+
+$$W = \begin{bmatrix}
+C \\
+CA 
+\end{bmatrix} = \begin{bmatrix}
+1 & 0 \\
+0 & -k_0k_{\mu}/k_T
+\end{bmatrix}$$
+
+and we see that $det(W) = -k_0k_{\mu}/k_T \neq 0$, so the system is observable.
+
+For the observation we use the relation:
+
+$$\dot{\hat{x}} = A\hat{x} + Bu +L(y - C\hat{x})$$
+
+The matrix $L$ is defined as:
+
+$$L = W^{-1}\tilde{W}\begin{bmatrix}
+p_1-a_1 \\
+p_2-a_2
+\end{bmatrix}$$
+
+where $a_i$ are the coefficients of the system characteristic polynomial, $p_i$ are the desirable coefficients of the observator characteristic polynomial and $\tilde{W}$ is given by the equation:
+
+$$\tilde{W} = \begin{bmatrix}
+1 & 0 \\
+a_1 & 1
+\end{bmatrix}^{-1} = \begin{bmatrix}
+1 & 0 \\
+-1/T_m & 1
+\end{bmatrix}$$
+
+So, we find:
+
+$$ L = \begin{bmatrix}
+p_1-1/T_m \\
+\frac{k_T}{k_0k_{\mu}T_m}(1/T_m-p_1)+\frac{k_Tp_2}{k_0k_{\mu}}
+\end{bmatrix}$$
+
+The coefficients $p_i$ will be calculated through trial and error during the experimental procedure.
+
+For the controll, we will use the linear state feedback controller we developed in the first experiment.
+
+### Experimental Procedure
 
