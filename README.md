@@ -181,7 +181,7 @@ We know that this controller will surely make our system follow the input as in 
 
 ### Experimental Procedure
 
-During this experiment we repeated the procedure of the first experiment with the new controller. The results are:
+During this experiment we repeated the procedure of the first experiment with the new controller, the script can be found in the file *dynamic_state_feedback_controller.m*. The results are:
 
 Without the magnetic break:
 
@@ -193,9 +193,9 @@ With the magnetic break:
 
 In this case, we have a bigger error while running the experiment without the magnetic break ($5.38$\%) and smaller with the magnetic break ($10.4$\%). These errors are again consequences of the imperfections of the system.
 
-## State observation and linear controll
+## State observation and linear control
 
-For this experiment, we consider that we don't have access to the value of the velocity $x_2$. So we need to develop a state observator before trying to controll the system.
+For this experiment, we consider that we don't have access to the value of the velocity $x_2$. So we need to develop a state observator before trying to control the system.
 
 ### Theoretical Analysis
 
@@ -241,7 +241,21 @@ p_1-1/T_m \\
 
 The coefficients $p_i$ will be calculated through trial and error during the experimental procedure.
 
-For the controll, we will use the linear state feedback controller we developed in the first experiment.
+For the control, we will use the linear state feedback controller we developed in the first experiment.
 
 ### Experimental Procedure
+#### First stage
 
+As a first step we need to develop the observer. The code developed and used is in the file *observer.m*. In the diagrams below, we can see the quality of the observation.
+
+<img width="370" alt="4_30_200_-" src="https://user-images.githubusercontent.com/61554467/178161532-f228349a-bce2-492d-9399-1e00bbfd2571.png">
+
+As we see, the $x_{1t}$ and $x_{2t}$ can observe the two state variables good enough for our application. The big spikes of $x_{2t}$ are results of the steep variation of $x_1$, during the position change.
+
+#### Second stage
+
+Now, having the observer, we will try to control the system using the approximated state variables. The code is in the file *linear_state_feedback_controll_observer.m* and the results:
+
+<img width="363" alt="4B" src="https://user-images.githubusercontent.com/61554467/178161759-9e3cc87d-765e-46de-96bc-ed35cc8793ba.png">
+
+So, we see that even with the impercetions of the approximated state variables by the observer, the system behaves as we intended.
