@@ -40,9 +40,9 @@ Finaly, $k_\mu$ describes the fraction of the output angle of rotation to the in
 
 - Calculation of $k_m, k_T$ and $k_0$
 
-In order to continue with the rest of the calculations, we need to define the rate of change $\frac{\Delta x}{\Delta t} $. So, we meassure with an oscilloscope $\Delta x = 14.4V $ from the potentiometer, and the time it needs for this turn  $\Delta t = 945ms $. Also,  $\Delta t $ is equal with the output period, so we can find  $\omega_{out} = 63.49rpm $ and  $\omega = \omega_{out}/k_\mu = 2285.71rpm $.
+In order to continue with the rest of the calculations, we need to define the rate of change $\frac{\Delta x}{\Delta t} $. So, we meassure with an oscilloscope $\Delta x = 14.4V$ from the potentiometer, and the time it needs for this turn  $\Delta t = 945ms$. Also,  $\Delta t$ is equal with the output period, so we can find  $\omega_{out} = 63.49rpm$ and  $\omega = \omega_{out}/k_\mu = 2285.71rpm$.
 
-With the above information we can define the rest of the parameters.  $\frac{\Delta x}{\Delta t} = k_{0}k_{\mu}\omega => k_0 = 0.24 $,  $V_{tacho} = k_{T}\omega => k_T = 0.00362 $ and  $k_{m}k_{T} = 0.836 => k_m = 231.04 $.
+With the above information we can define the rest of the parameters.  $\frac{\Delta x}{\Delta t} = k_{0}k_{\mu}\omega => k_0 = 0.24$,  $V_{tacho} = k_{T}\omega => k_T = 0.00362$ and  $k_{m}k_{T} = 0.836 => k_m = 231.04$.
 
 So, finally we have:
 - $k_m = 231.04 $
@@ -59,15 +59,15 @@ So, by meassuring, we find $V_{ref} = 5.3V$ and $V_{7805} = 5.46V$.
 From the block diagram of the system, we can extract some equations for the values of interest in the frequency domain. So we have:
 - $\Theta(s) = \frac{k_{0}k_{\mu}}{s}\Omega(s) => \mathcal{L}^{-1}[\Omega(s)] = \mathcal{L}^{-1}[\frac{s}{k_{0}k{\mu}}\Theta(s)] => \omega(t) = \frac{1}{k_{0}k{\mu}}\frac{d\theta(t)}{dt}$
 - $V(s) = -k_{T}\Omega(s) => v(t) = -k_{T}\omega(t) => v(t) = \frac{-k_T}{k_{0}k{\mu}}\frac{d\theta(t)}{dt} $
-- $\Omega(s) = -\frac{k_{m}}{T_{m}s+1}U(s)$ for our experiments we will have a step input (Heaviside) $u(t) = u, t>0 $. So  $U(s) = u/s $ and the initial equation can be transfered in the time domain as  $\omega(t) = -k_{m}(1-e^{-t/T_{m}})u => v(t) = k_Tk_{m}(1-e^{-t/T_{m}})u$.
+- $\Omega(s) = -\frac{k_{m}}{T_{m}s+1}U(s)$ for our experiments we will have a step input (Heaviside) $u(t) = u, t>0 $. So  $U(s) = u/s$ and the initial equation can be transfered in the time domain as  $\omega(t) = -k_{m}(1-e^{-t/T_{m}})u => v(t) = k_Tk_{m}(1-e^{-t/T_{m}})u$.
 
-We will choose the state variables:  $x_1 = \theta $ and  $x_2 = v $. So:
+We will choose the state variables:  $x_1 = \theta$ and  $x_2 = v$. So:
 - $\dot{x_1} = \dot{\theta} => \dot{x_1} = \frac{-k_0k_{\mu}}{k_T}x_2$
 - $\dot{x_2} = \dot{v} => \dot{x_2} = -\frac{1}{T_m}x_2 + \frac{k_mk_T}{T_m}u$
 
 And the equations of state will be:
-$$ \dot{x} = Ax + Bu$$
-$$ y = Cx + Du$$
+$$\dot{x} = Ax + Bu$$
+$$y = Cx + Du$$
 
 where
 
@@ -131,7 +131,7 @@ During the experimental procedure, the script *linear_state_feedback_controller.
 
 #### First stage
 
-At the first stage of this experiment we will set the input of our system to  $r = \theta_{ref} = 5V $ and we will observe its behaviour. Our goal is for the system to converge to the input given. The initial position will be $\theta_{ref} = 5V$.
+At the first stage of this experiment we will set the input of our system to  $r = \theta_{ref} = 5V$ and we will observe its behaviour. Our goal is for the system to converge to the input given. The initial position will be $\theta_{ref} = 5V$.
 
 After we run the code on the actual system we got the results shown bellow:
 
@@ -150,8 +150,8 @@ This time, the position doesn's converge to the $\theta_{ref}$ as the error is t
 In order to deal with this problem, we need ot change our controller. So, intead of a linear state feedback controler, we will use a dynamic state feedback controller, which has the abillity to depreciate disturbances.
 
 ## Dynamic state feedback control
-### Theoretic Analysis
-The dynamic state feedback controller is desribed by the relation:  $u = -k_1x_1 - k_2x_2 - k_iz $ where  $\dot{z} = y - r $ with  $r $ the new input. Our goal is to calculate the gains of the controller ($k_1, k_2, k_i$).
+### Theoretical Analysis
+The dynamic state feedback controller is desribed by the relation:  $u = -k_1x_1 - k_2x_2 - k_iz$ where  $\dot{z} = y - r$ with  $r$ the new input. Our goal is to calculate the gains of the controller ($k_1, k_2, k_i$).
 
 After the integration of the controller to the system, the new equations of state are shaped as:
 
