@@ -258,4 +258,4 @@ Now, having the observer, we will try to control the system using the approximat
 
 <img width="363" alt="4B" src="https://user-images.githubusercontent.com/61554467/178161759-9e3cc87d-765e-46de-96bc-ed35cc8793ba.png">
 
-So, we see that even with the impercetions of the approximated state variables by the observer, the system behaves as we intended.
+So, we see that even with the imperfetions of the approximated state variables by the observer, the system behaves as intended.
